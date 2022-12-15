@@ -125,3 +125,8 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+MAX_PLANES = 10
+CONSUMPTION_MULTIPLIER = 0.80
+PASSENGER_CONSUMPTION_RATE = 0.002
+BASE_TANK = 200

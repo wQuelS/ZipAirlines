@@ -1,0 +1,9 @@
+[
+{
+  "model": "airplanes.airline",
+  "pk": 1,
+  "fields": {
+    "name": "ZipAirlines"
+  }
+}
+]

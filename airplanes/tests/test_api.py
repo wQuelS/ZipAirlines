@@ -4,6 +4,7 @@ from django.test import TestCase
 
 from django.urls import reverse
 from rest_framework import status
+from rest_framework.exceptions import ValidationError
 from rest_framework.test import APIClient
 
 from airplanes.models import Airline, Airplane
@@ -37,6 +38,15 @@ def sample_airplane(**params):
 class AirplaneApiTest(TestCase):
     def setUp(self) -> None:
         self.client = APIClient()
+
+    def test_airplane_str(self):
+        airplane = sample_airplane()
+
+        self.assertEqual(
+            str(airplane),
+            f"{airplane.airline.name} "
+            f"(id: {airplane.id}, capacity: {airplane.capacity}, passenger: {airplane.passengers})",
+        )
 
     def test_maximum_10_planes(self):
         airline = sample_airline()
@@ -80,7 +90,6 @@ class AirplaneApiTest(TestCase):
         response = self.client.get(AIRLINE_URL)
 
         airplanes = Airplane.objects.all()
-        # serializer = AirplaneSerializer(airplanes, many=True)
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(Airplane.objects.count(), 3)
@@ -89,10 +98,14 @@ class AirplaneApiTest(TestCase):
         airline = sample_airline()
 
         data = {"id": 210, "airline": airline, "capacity": 50, "passenger": 51}
+        instance = Airplane(
+            id=201, airline=airline, capacity=50, passengers=60
+        )
 
         response = self.client.post(AIRPLANES_URL, data)
 
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertRaises(ValidationError, instance.clean)
 
     def test_airplane_with_negative_data_input(self):
         airline = sample_airline()

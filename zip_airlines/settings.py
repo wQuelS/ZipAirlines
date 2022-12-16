@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "airplanes",
     "rest_framework",
+    "coverage"
 ]
 
 MIDDLEWARE = [

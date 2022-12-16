@@ -2,18 +2,9 @@ from typing import Dict, Any
 
 from django.conf import settings
 from rest_framework import serializers
-from rest_framework.exceptions import ValidationError
-from rest_framework.validators import UniqueValidator
 
-from airplanes.models import Airplane, Airline
+from airplanes.models import Airplane
 from airplanes.airplane_utility import AirplaneUtility
-
-
-# class AirlineSerializer(serializers.ModelSerializer):
-#
-#     class Meta:
-#         model = Airline
-#         fields = ("id", "name")
 
 
 class AirplaneSerializer(serializers.ModelSerializer):
@@ -60,14 +51,6 @@ class AirplaneCreateSerializer(AirplaneSerializer):
             )
 
         return data
-
-    #
-    # def create(self, validated_data: Dict[str, Any]) -> Airplane:
-    #     # Create a new instance of the Airplane model using the validated data
-    #     airplane = Airplane.objects.create(**validated_data)
-    #
-    #     # Return the newly created airplane
-    #     return airplane
 
 
 class AirlineSerializer(serializers.Serializer):

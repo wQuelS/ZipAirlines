@@ -1,10 +1,6 @@
-from typing import Type
-
-from django.conf import settings
-from django.core.validators import MinValueValidator
 from django.db import models
-from math import log
 
+from django.core.validators import MinValueValidator
 from rest_framework.exceptions import ValidationError
 
 

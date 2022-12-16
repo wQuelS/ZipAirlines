@@ -1,4 +1,3 @@
-from decimal import Decimal
 from math import log
 
 from django.conf import settings

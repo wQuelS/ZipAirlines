@@ -82,9 +82,9 @@ class AirplaneApiTest(TestCase):
     def test_retrieve_airplane_list(self):
         airline = sample_airline()
 
-        for i in range(1, 4):
+        for id in range(1, 4):
             Airplane.objects.create(
-                id=i, airline=airline, capacity=40, passengers=12
+                id=id, airline=airline, capacity=40, passengers=12
             )
 
         response = self.client.get(AIRLINE_URL)
@@ -99,7 +99,7 @@ class AirplaneApiTest(TestCase):
 
         data = {"id": 210, "airline": airline, "capacity": 50, "passenger": 51}
         instance = Airplane(
-            id=201, airline=airline, capacity=50, passengers=60
+            *data
         )
 
         response = self.client.post(AIRPLANES_URL, data)

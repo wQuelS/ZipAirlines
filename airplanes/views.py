@@ -1,6 +1,5 @@
 from typing import Type
 
-from django.db.migrations import serializer
 from rest_framework import mixins, viewsets
 from rest_framework.decorators import api_view
 from rest_framework.response import Response

@@ -35,13 +35,17 @@ class Migration(migrations.Migration):
                     models.IntegerField(
                         primary_key=True,
                         serialize=False,
-                        validators=[django.core.validators.MinValueValidator(1)],
+                        validators=[
+                            django.core.validators.MinValueValidator(1)
+                        ],
                     ),
                 ),
                 (
                     "capacity",
                     models.IntegerField(
-                        validators=[django.core.validators.MinValueValidator(1)]
+                        validators=[
+                            django.core.validators.MinValueValidator(1)
+                        ]
                     ),
                 ),
                 ("passengers", models.IntegerField()),
